@@ -22,4 +22,4 @@ This project implements a Data Loss Prevention (DLP) alerting system using AWS s
 
 - **Proactive security** through automated monitoring and event-driven alerts.
 
-By automating the detection and response process, this system minimizes manual oversight, speeds up incident response, and reduces the risk of data exposure.
+By automating the detection and response process, this system minimizes manual oversight, speeds up incident response, and reduces the risk of data exposure..
