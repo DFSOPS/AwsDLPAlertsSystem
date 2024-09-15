@@ -26,15 +26,19 @@ resource "aws_sns_topic_subscription" "email_subscription" {
   protocol  = "email"
   endpoint  = "sayess.da@gmail.com"  # Email to subscribe
 }
+
 # Define the CloudWatch Event Rule (EventBridge Rule) for Macie Findings
 resource "aws_cloudwatch_event_rule" "macie_alerts" {
   name        = "MacieAlerts"
   description = "Trigger for Macie findings"
   event_pattern = jsonencode({
-    source       = ["aws.macie"]
-    detail_type  = ["Macie Finding"]
-    detail = {
-      finding_type = ["SensitiveData"]
+    "source": ["aws.macie"],
+    "detail-type": ["Macie Finding"],
+    "detail": {
+      "severity": {
+        "label": ["High", "Medium"]
+      },
+      "category": ["CLASSIFICATION"]
     }
   })
 }
@@ -50,26 +54,5 @@ resource "aws_cloudwatch_event_target" "macie_alert_target" {
     Bucket      = "<bucketName>"
     Object      = "<objectKey>"
     Description = "<description>"
-  })
-}
-
-# Grant EventBridge permissions to publish to SNS
-resource "aws_sns_topic_policy" "macie_alert_policy" {
-  arn    = aws_sns_topic.personal_data_alert.arn
-  policy = jsonencode({
-    Version = "2012-10-17"
-    Statement = [
-      {
-        Effect    = "Allow"
-        Principal = "*"
-        Action    = "SNS:Publish"
-        Resource  = aws_sns_topic.personal_data_alert.arn
-        Condition = {
-          ArnEquals = {
-            "aws:SourceArn" = aws_cloudwatch_event_rule.macie_alerts.arn
-          }
-        }
-      }
-    ]
   })
 }
