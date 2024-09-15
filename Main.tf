@@ -26,7 +26,6 @@ resource "aws_sns_topic_subscription" "email_subscription" {
   protocol  = "email"
   endpoint  = "sayess.da@gmail.com"  # Email to subscribe
 }
-
 # Define the CloudWatch Event Rule (EventBridge Rule)
 resource "aws_cloudwatch_event_rule" "macie_alerts" {
   name        = "MacieAlerts"
