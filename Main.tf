@@ -5,6 +5,5 @@ provider "aws" {
 
 resource "aws_s3_bucket" "bucketle4k" {
   bucket = "bucketle4k"  # S3 bucket name
-  acl    = "private"     # Default ACL, change as needed
 }
 #
