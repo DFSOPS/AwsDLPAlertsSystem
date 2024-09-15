@@ -6,7 +6,15 @@ provider "aws" {
 resource "aws_s3_bucket" "bucketle4k" {
   bucket = "bucketle4k"  # S3 bucket name
 }
+terraform {
+  backend "s3" {
+    bucket         = "bucketle4k"  # S3 bucket for state file
+    key            = "terraform/state.tfstate"      # State file path
+    region         = "eu-west-2"
+  }
+}
 
+# Other resources here
 # Create SNS Topic
 resource "aws_sns_topic" "personal_data_alert" {
   name = "PersonalDataAlert"
