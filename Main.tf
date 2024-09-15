@@ -33,13 +33,7 @@ resource "aws_cloudwatch_event_rule" "macie_alerts" {
   description = "Trigger for Macie findings"
   event_pattern = jsonencode({
     "source": ["aws.macie"],
-    "detail-type": ["Macie Finding"],
-    "detail": {
-      "severity": {
-        "label": ["High", "Medium"]
-      },
-      "category": ["CLASSIFICATION"]
-    }
+    "detail-type": ["Macie Finding"]
   })
 }
 
