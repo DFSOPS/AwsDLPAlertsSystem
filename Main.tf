@@ -26,13 +26,16 @@ resource "aws_sns_topic_subscription" "email_subscription" {
   protocol  = "email"
   endpoint  = "sayess.da@gmail.com"  # Email to subscribe
 }
-# Define the CloudWatch Event Rule (EventBridge Rule)
+# Define the CloudWatch Event Rule (EventBridge Rule) for Macie Findings
 resource "aws_cloudwatch_event_rule" "macie_alerts" {
   name        = "MacieAlerts"
   description = "Trigger for Macie findings"
   event_pattern = jsonencode({
     source       = ["aws.macie"]
     detail_type  = ["Macie Finding"]
+    detail = {
+      finding_type = ["SensitiveData"]
+    }
   })
 }
 
