@@ -41,12 +41,4 @@ resource "aws_cloudwatch_event_rule" "macie_alerts" {
 resource "aws_cloudwatch_event_target" "macie_alert_target" {
   rule      = aws_cloudwatch_event_rule.macie_alerts.name
   arn       = aws_sns_topic.personal_data_alert.arn
-
-  # Use input for the target, provide JSON formatted input
-  input = jsonencode({
-    Alert       = "Macie Finding - Severity: <severity>"
-    Bucket      = "<bucketName>"
-    Object      = "<objectKey>"
-    Description = "<description>"
-  })
-}
+  }
