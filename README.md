@@ -23,3 +23,38 @@ This project implements a Data Loss Prevention (DLP) alerting system using AWS s
 - **Proactive security** through automated monitoring and event-driven alerts.
 
 By automating the detection and response process, this system minimizes manual oversight, speeds up incident response, and reduces the risk of data exposure.
+# DLP AWS Alerting System HLD
+
+```mermaid
+graph TD
+    subgraph DataLossPreventionSystem
+        S3[S3 Bucket]
+        Macie[Amazon Macie]
+        SNS[AWS SNS]
+        EventBridge[AWS EventBridge]
+        SecurityHub[AWS Security Hub]
+    end
+
+    %% Data Flow
+    S3 --> Macie
+    Macie --> SNS
+    SNS -->|Alert Notification| SecurityHub
+    EventBridge -->|Trigger Event| SNS
+
+    %% Connections
+    Macie -->|Scan Results| SecurityHub
+    EventBridge -->|Bucket Creation Event| S3
+
+    %% Key Features
+    subgraph KeyFeatures
+        PII_Detection[Automated PII Detection]
+        RealTimeAlerts[Real-Time Alerts]
+        CentralizedMonitoring[Centralized Security Monitoring]
+        EventDriven[Event-Driven Architecture]
+    end
+
+    %% Feature Mapping
+    PII_Detection --> Macie
+    RealTimeAlerts --> SNS
+    CentralizedMonitoring --> SecurityHub
+    EventDriven --> EventBridge
