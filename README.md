@@ -25,40 +25,26 @@ By automating the detection and response process, this system minimizes manual o
 # DLP AWS Alerting System HLD
 
 ```mermaid
-graph TD
-    %% Define Services
-    S3[S3 Bucket] --> Macie[Amazon Macie]
-    Macie --> SNS[AWS SNS]
-    SNS --> SecurityHub[AWS Security Hub]
-    EventBridge[AWS EventBridge] --> SNS
+flowchart TD;
+    A[User] -->|Uploads Data| B[S3 Bucket]
+    B -->|Scanned for PII| C[Amazon Macie]
+    C -->|Identifies PII| D[Amazon SNS]
+    D -->|Sends Alert| E[Security Team]
+    F[Amazon EventBridge] -->|Triggers on Events| D
+    B -->|Creates Event| F
 
-    %% Define Components and Flow
-    subgraph Data Storage
-        S3
-    end
+    %% Style the nodes
+    classDef userStyle fill:#f9f,stroke:#333,stroke-width:2px;
+    classDef bucketStyle fill:#bbf,stroke:#333,stroke-width:2px;
+    classDef serviceStyle fill:#bbf,stroke:#333,stroke-width:2px;
+    classDef alertStyle fill:#ffb,stroke:#333,stroke-width:2px;
 
-    subgraph Data Scanning
-        Macie
-    end
-
-    subgraph Notification System
-        SNS
-        SecurityHub
-    end
-
-    subgraph Event Management
-        EventBridge
-    end
-
-    %% Real-Time Alerts and Event-Driven Actions
-    S3 -- Stores sensitive data --> Macie
-    Macie -- Scans and detects PII --> SNS
-    SNS -- Sends alerts to --> SecurityHub
-    EventBridge -- Triggers notifications for events --> SNS
-
-    %% Additional Connections
-    SecurityHub -- Aggregates findings from --> Macie
-    SecurityHub -- Monitors and reviews findings --> Team[Security Team]
+    class A userStyle;
+    class B bucketStyle;
+    class C serviceStyle;
+    class D alertStyle;
+    class E alertStyle;
+    class F serviceStyle;
 
     %% Labels
     classDef data fill:#f9f,stroke:#333,stroke-width:2px;
