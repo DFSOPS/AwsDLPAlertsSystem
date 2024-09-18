@@ -32,7 +32,6 @@ flowchart TD;
     D -->|Sends Email| G[Email Notification]
     D -->|Triggers Lambda| H[Lambda Function]
     H -->|Sends Alert to| I[Slack]
-    D -->|Sends Alert| E[Security Team]
     F[Amazon EventBridge] -->|Triggers on Events| D
     B -->|Creates Event| F
 
@@ -46,8 +45,6 @@ flowchart TD;
     class B bucketStyle;
     class C serviceStyle;
     class D alertStyle;
-    class E alertStyle;
-    class F serviceStyle;
     class G alertStyle;
     class H serviceStyle;
     class I alertStyle;
@@ -55,7 +52,7 @@ flowchart TD;
     %% Labels
     classDef data fill:#f9f,stroke:#333,stroke-width:2px;
     class S3,Macie,SNS,EventBridge data;
-    class SecurityHub,Team fill:#ccf,stroke:#333,stroke-width:2px;
+
 
 
 
