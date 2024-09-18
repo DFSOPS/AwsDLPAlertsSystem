@@ -24,12 +24,14 @@ By automating the detection and response process, this system minimizes manual o
 
 # DLP AWS Alerting System HLD
 
-```mermaid
 flowchart TD;
     A[User] -->|Uploads Data| B[S3 Bucket]
     B -->|Scanned for PII| C[Amazon Macie]
     C -->|Identifies PII| D[Amazon SNS]
     D -->|Sends Alert| E[Security Team]
+    D -->|Sends Email| G[Email Notification]
+    D -->|Triggers Lambda| H[Lambda Function]
+    H -->|Sends Alert to| I[Slack]
     F[Amazon EventBridge] -->|Triggers on Events| D
     B -->|Creates Event| F
 
@@ -45,8 +47,12 @@ flowchart TD;
     class D alertStyle;
     class E alertStyle;
     class F serviceStyle;
+    class G alertStyle;
+    class H serviceStyle;
+    class I alertStyle;
 
     %% Labels
     classDef data fill:#f9f,stroke:#333,stroke-width:2px;
     class S3,Macie,SNS,EventBridge data;
     class SecurityHub,Team fill:#ccf,stroke:#333,stroke-width:2px;
+
