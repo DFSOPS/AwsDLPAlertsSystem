@@ -24,6 +24,7 @@ By automating the detection and response process, this system minimizes manual o
 
 # DLP AWS Alerting System HLD
 
+```mermaid
 flowchart TD;
     A[User] -->|Uploads Data| B[S3 Bucket]
     B -->|Scanned for PII| C[Amazon Macie]
@@ -55,4 +56,5 @@ flowchart TD;
     classDef data fill:#f9f,stroke:#333,stroke-width:2px;
     class S3,Macie,SNS,EventBridge data;
     class SecurityHub,Team fill:#ccf,stroke:#333,stroke-width:2px;
+
 
