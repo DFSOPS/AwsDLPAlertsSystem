@@ -1,6 +1,6 @@
 ### DLP AWS Alerting System
 
-This project implements a Data Loss Prevention (DLP) alerting system using AWS services to identify and report sensitive personal data in real-time. It leverages **Amazon S3**, **Amazon Macie**, **AWS SNS**, **AWS Lambda** and **Amazon EventBridge** to provide automated detection and notifications when personal information is found in cloud storage.
+This project implements a Data Loss Prevention (DLP) alerting system using AWS services to identify and report sensitive personal data in real-time. It leverages **Amazon S3**, **Amazon Macie**, **AWS SNS**, **AWS Lambda** and **Amazon EventBridge** to provide automated detection and notifications when personal information is found in cloud storage. Email and an automated 
 
 #### Key Features:
 
