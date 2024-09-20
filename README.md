@@ -8,7 +8,7 @@ This project implements a Data Loss Prevention (DLP) alerting system using AWS s
 
 - **Real-Time Alerts:** Alerts are sent via SNS to notify when personal information is detected, enabling immediate response.
 
-- **Event-Driven Architecture:** EventBridge triggers notifications upon certain events (e.g., new bucket creation), ensuring proactive monitoring of S3 buckets.
+- **Event-Driven Architecture:** EventBridge triggers notifications upon certain events (e.g., SPII Data Exposure), ensuring proactive monitoring of S3 buckets.
 
 #### Problem Tackled:
 
