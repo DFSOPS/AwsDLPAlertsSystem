@@ -24,7 +24,7 @@ resource "aws_sns_topic" "personal_data_alert" {
 resource "aws_sns_topic_subscription" "email_subscription" {
   topic_arn = aws_sns_topic.personal_data_alert.arn
   protocol  = "email"
-  endpoint  = "sayess.da@gmail.com"  # Email to subscribe
+  endpoint  = "X"  # Email to subscribe
 }
 
 # Define the CloudWatch Event Rule (EventBridge Rule) for Macie Findings
